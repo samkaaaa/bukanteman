@@ -2,7 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>💖 Pertanyaan Penting 💖</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -11,21 +13,22 @@
 
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 20px;
       overflow: hidden;
     }
 
-    /* Background hati */
+    /* background hati */
     body::before {
-      content: "💖 💕 ❤️ 💘 💗 💞 💓 💖 💕 ❤️ 💘";
+      content: "💖 💕 ❤️ 💘 💗 💞 💓 💖 💕 ❤️ 💘 💗 💞";
       position: absolute;
-      font-size: 40px;
+      font-size: 28px;
       opacity: 0.15;
-      animation: float 20s linear infinite;
+      animation: float 18s linear infinite;
       white-space: nowrap;
     }
 
@@ -35,49 +38,60 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.9);
-      padding: 40px;
-      border-radius: 25px;
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.92);
+      padding: 30px 20px 40px;
+      border-radius: 24px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
       position: relative;
       z-index: 2;
     }
 
     h1 {
       color: #ff4d6d;
+      font-size: clamp(20px, 5vw, 26px);
       margin-bottom: 30px;
-      font-size: 28px;
     }
 
     .buttons {
       position: relative;
-      height: 120px;
+      height: 130px;
+      width: 100%;
     }
 
     button {
-      padding: 15px 35px;
+      width: 140px;
+      max-width: 70%;
+      padding: 14px 0;
       border: none;
       border-radius: 50px;
-      font-size: 18px;
+      font-size: clamp(15px, 4vw, 18px);
       cursor: pointer;
       transition: all 0.3s ease;
       position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     #yes {
       background: #ff4d6d;
       color: white;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 0;
     }
 
     #no {
       background: #adb5bd;
       color: white;
-      left: 50%;
-      top: 60px;
-      transform: translateX(-50%);
+      top: 70px;
+    }
+
+    /* layar kecil */
+    @media (max-width: 480px) {
+      .buttons {
+        height: 150px;
+      }
     }
   </style>
 </head>
@@ -85,6 +99,7 @@
 
   <div class="card">
     <h1>apakah kamu ingin menjadi fine shytku? 💘</h1>
+
     <div class="buttons">
       <button id="yes" onclick="yesClick()">Iya 💖</button>
       <button id="no" onclick="noClick()">Tidak 🙄</button>
@@ -98,12 +113,14 @@
       const noBtn = document.getElementById("no");
       const yesBtn = document.getElementById("yes");
 
-      // tombol tidak kabur
-      const x = Math.random() * 200 - 100;
-      const y = Math.random() * 80 - 40;
+      const maxX = 120;
+      const maxY = 60;
+
+      const x = Math.random() * maxX * 2 - maxX;
+      const y = Math.random() * maxY * 2 - maxY;
+
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
 
-      // tombol iya membesar
       scale += 0.15;
       yesBtn.style.transform = `translateX(-50%) scale(${scale})`;
     }
@@ -111,16 +128,19 @@
     function yesClick() {
       document.body.innerHTML = `
         <div style="
-          height:100vh;
+          min-height:100vh;
           display:flex;
           justify-content:center;
           align-items:center;
           flex-direction:column;
           background:linear-gradient(135deg,#ff9a9e,#fad0c4);
           color:white;
+          padding:20px;
           text-align:center;">
-          <h1 style="font-size:40px;">YEAAYYYY 💕😍</h1>
-          <p style="font-size:22px;">sekarang kamu resmi jadi fine shytku 💖💖💖</p>
+          <h1 style="font-size:clamp(28px,7vw,40px);">YEAAYYYY 💕😍</h1>
+          <p style="font-size:clamp(16px,5vw,22px);">
+            sekarang kamu resmi jadi fine shytku 💖💖💖
+          </p>
         </div>
       `;
     }
